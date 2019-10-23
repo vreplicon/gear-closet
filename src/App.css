@@ -1,0 +1,128 @@
+* {
+    box-sizing: border-box;
+    font-size: 20px;
+    margin: 0;
+    font-family: 'Raleway', sans-serif;
+  }
+
+nav, footer {
+    position: fixed;
+    width: 100%;
+    background-color: darkgray;
+    height: 50px;
+}
+
+nav {
+    top: 0px;
+    left: 0px;
+    padding-right: 30px;
+}
+
+.tagline {
+    font-style: italic;
+    text-align: center;
+}
+
+footer {
+    bottom: 0px;
+    left: 0px;
+    padding: 0 10%;
+    display: flex;
+    justify-content: space-around;
+}
+
+section, .banner {    
+    width: 100%;
+    padding: 2%;
+}
+
+main {
+    margin-top: 50px;
+    margin-bottom: 80px;
+}
+
+h1 {
+    font-size: 50px;
+    font-weight: normal;
+    text-align: center;
+}
+
+p {
+    font-size: 20px;
+}
+
+
+ul {
+    display: none;
+    list-style: none;
+    justify-content: flex-end;
+}
+
+li {
+    padding-left: 20px;
+    font-size: 30px;
+}
+
+.one, .three {
+    background-color: gray;
+}
+
+.two {
+    background-color: lightgray;
+}
+
+form {
+    background-color: lightgray;
+    padding: 2%;
+}
+
+.form-section {
+    padding: 5px;
+}
+
+label {
+    display: block;
+}
+
+textarea {
+    width: 50%;
+}
+
+.gear-list {
+    width: 50%;
+    display: block;
+    background-color: darkgray;
+}
+
+.signup-form {
+    text-align: center;
+    background-color: white;
+}
+
+header, .one, .two, .three {
+    text-align: center;
+}
+
+#sign-in-form {
+    text-align: center;
+}
+
+.description {
+    text-align: center;
+}
+
+.gear-title {
+    color: blue;
+}
+
+.gear-title:hover {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+dt {
+    font-weight: bold;
+}
