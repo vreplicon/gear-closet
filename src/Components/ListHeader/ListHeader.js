@@ -13,7 +13,7 @@ export default class ListHeader extends React.Component {
         return (
             <div className="list-header">
                 <Link to={`/list/${list.id}`} className="list-name">
-                    <h3>{list.name}</h3>
+                    <h3>{list.list_name}</h3>
                 </Link>
                 <button onClick={() => this.context.deleteList(list.id)}>Delete</button>
             </div>

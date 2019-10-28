@@ -29,7 +29,7 @@ export default class GearHeader extends React.Component {
     render() {
         return (
             <div className="gear-header">
-            <h3 className="gear-title" onClick={() => this.toggleDetails()}>{this.props.gear.name}</h3>
+            <h3 className="gear-title" onClick={() => this.toggleDetails()}>{this.props.gear.gear_name}</h3>
             { this.state.showDetails ? <GearDetails gear={this.props.gear}/> : null }
             {this.props.hideDelete ? null :
             <button onClick={() => this.context.deleteGear(this.props.gear.id)}>Delete</button>}

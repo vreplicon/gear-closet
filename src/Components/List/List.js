@@ -6,7 +6,7 @@ export default class List extends React.Component {
     static contextType = AppContext
 
     render() {
-        let listId = this.props.match.params.listId  
+        let listId = parseInt(this.props.match.params.listId)  
         const list = this.context.lists.find(list => list.id === listId)
         let gearIds = []
         this.context.gearListsLookup.map((lookup) => {
@@ -21,7 +21,7 @@ export default class List extends React.Component {
             <div className="list">
                 <button onClick={() => this.context.goBack()}>Go Back</button>
                 <header role="banner" className="banner">
-                    <h1>{list.name}</h1>
+                    <h1>{list.list_name}</h1>
                 </header>
       
                 <section className="description">

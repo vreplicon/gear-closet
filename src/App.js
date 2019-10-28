@@ -10,6 +10,7 @@ import UserHome from './Components/UserHome/UserHome';
 // import Header from './Components/Header/Header';
 import List from './Components/List/List';
 import uuid from 'uuid'
+import config from './config'
 
 class App extends React.Component {
 
@@ -24,6 +25,48 @@ class App extends React.Component {
 			lists : [],
 			gearListsLookup : []
           }
+    }
+
+
+	contactApi(action, url, callback = null, body = null) {
+        const options =  {
+            method: action,
+            body : (body) ? JSON.stringify(body) : null,
+            headers: {
+                "Content-Type": "application/json",
+            }
+        };
+        fetch(url, options)
+            .then(res => {
+              if (!res.ok) {
+                // get the error message from the response,
+                return res.json().then(error => {
+                  // then throw it
+                  throw error
+                })
+              } else if (res.status !== 204) {
+                return res.json()
+              }
+              
+            })
+            .then(data => {
+              // call the callback when the request is successful
+              // this is where the App component can remove it from state
+              if (callback) {
+                callback(data);
+              }
+              
+            })
+            .catch(error => {
+              console.error(error)
+            })
+        
+	}
+	
+	componentDidMount() {
+        this.contactApi('GET', `${config.API_ENDPOINT}/api/lists/user/1`, this.setLists);
+		this.contactApi('GET', `${config.API_ENDPOINT}/api/gear`, this.setGear);
+		this.contactApi('GET', `${config.API_ENDPOINT}/api/lookup`, this.setGearListsLookup);
     }
 
 	setLoggedIn = (loggedIn) => {
@@ -86,12 +129,12 @@ class App extends React.Component {
         this.props.history.goBack();
 	}
 
-	componentDidMount() {
-		this.setUsers(this.props.data.users)
-		this.setGear(this.props.data.gear)
-		this.setLists(this.props.data.lists)
-		this.setGearListsLookup(this.props.data.gear_lists_lookup)
-	}
+	// componentDidMount() {
+	// 	this.setUsers(this.props.data.users)
+	// 	this.setGear(this.props.data.gear)
+	// 	this.setLists(this.props.data.lists)
+	// 	this.setGearListsLookup(this.props.data.gear_lists_lookup)
+	// }
 
 	render() {
 

@@ -12,11 +12,11 @@ export default class GearDetails extends React.Component {
             <div>
                 <dl>
                 <dt>Type:</dt>
-                <dd>{this.props.gear.type}</dd>
+                <dd>{this.props.gear.gear_type}</dd>
                 <dt>Notes:</dt>
                 <dd>{this.props.gear.notes}</dd>
                 <dt>Weight:</dt>
-                <dd>{`${this.props.gear.weight} ${this.props.gear.unit}`}</dd>
+                <dd>{`${this.props.gear.gear_weight} ${this.props.gear.weight_unit}`}</dd>
               </dl>
             </div>
         )
