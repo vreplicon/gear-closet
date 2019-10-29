@@ -23,7 +23,9 @@ class App extends React.Component {
             users : [],
             gear : [],
 			lists : [],
-			gearListsLookup : []
+			gearListsLookup : [],
+			userId : 1,
+			gearForListAdd : null
           }
     }
 
@@ -89,31 +91,48 @@ class App extends React.Component {
 		this.setState({gearListsLookup : gearListsLookup})
 	}
 
-	addGear = (e, gear) => {
-		e.preventDefault();
-        this.props.history.push('/home');
+	addGear = (gear) => {
 		const newGear = [...this.state.gear, gear]
 		this.setGear(newGear)
 	}
 
-	addList = (e, list) => {
-		e.preventDefault()
+    handleGearAdd = (e, gear) => {
+        e.preventDefault();
+        this.props.history.push('/home'); 
+        this.contactApi('POST', `${config.API_ENDPOINT}/api/gear`, this.addGear, gear);
+	}
+	
+	
+    handleListAdd = (e, gear, list) => {
+        e.preventDefault()
 		this.props.history.push('/home')
-		this.addListGearLookup(list, list.gear)
+		this.setState({gearForListAdd: gear})
+        this.contactApi('POST', `${config.API_ENDPOINT}/api/lists`, this.addList, list)
+	}
+
+
+	addList = (list) => {
+		this.addListGearLookup(list, this.state.gearForListAdd)
 		const newLists = [...this.state.lists, list]
 		this.setLists(newLists)
 	}
 	
 	addListGearLookup = (list, gear) => {
-		const newLookups = gear.map((g) => {
-			return ({
-				id : uuid.v4(),
-				gear_id : g.id,
-				list_id : list.id,
-				user_id : 1
-			})
+		gear.forEach(g => {
+			this.handleAddListGearLookup(g.id, list.id)
 		})
-		this.setState({gearListsLookup: [...this.state.gearListsLookup, ...newLookups]})
+		this.setState({gearForListAdd: null})
+		// this.setState({gearListsLookup: [...this.state.gearListsLookup, ...newLookups]})
+	}
+
+	handleAddListGearLookup = (gear_id, list_id) => {
+		console.log(`New lookup ${gear_id} ${list_id}`)
+		const newLookup = {user_id: this.state.userId, gear_id: gear_id, list_id: list_id}
+		this.contactApi('POST', `${config.API_ENDPOINT}/api/lookup`, this.addLookupToState, newLookup)
+	}
+
+	addLookupToState = (lookup) => {
+		this.setState({gearListsLookup: [...this.state.gearListsLookup, lookup]})
 	}
 
 
@@ -129,13 +148,6 @@ class App extends React.Component {
         this.props.history.goBack();
 	}
 
-	// componentDidMount() {
-	// 	this.setUsers(this.props.data.users)
-	// 	this.setGear(this.props.data.gear)
-	// 	this.setLists(this.props.data.lists)
-	// 	this.setGearListsLookup(this.props.data.gear_lists_lookup)
-	// }
-
 	render() {
 
 		const contextValue = {
@@ -146,8 +158,8 @@ class App extends React.Component {
 			gearListsLookup : this.state.gearListsLookup,
 			deleteGear : this.deleteGear,
 			deleteList : this.deleteList,
-			addGear : this.addGear,
-			addList : this.addList,
+			addGear : this.handleGearAdd,
+			addList : this.handleListAdd,
 			goBack : this.goBack
 		}
 

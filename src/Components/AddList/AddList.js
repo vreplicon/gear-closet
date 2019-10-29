@@ -48,10 +48,10 @@ export default class AddList extends React.Component {
                     onChange={() => this.toggleItem(gear)}
                     type="checkbox" 
                     className="gear-checkbox"
-                    value={gear.name} 
+                    value={gear.gear_name} 
                   
                     />
-                {gear.name}
+                {gear.gear_name}
                 </label>
             )
         })
@@ -64,11 +64,10 @@ export default class AddList extends React.Component {
                 </header>
                 
                 <section>
-                    <form id="add-list" onSubmit={e => this.context.addList(e, {
-            id: uuid.v4(),
-            name : this.state.title,
-            description : this.state.description,
-            gear : this.state.gear,
+                    <form id="add-list" onSubmit={e => this.context.addList(e, this.state.gear,{
+            list_name : this.state.title,
+            list_description : this.state.description,
+            user_id: 1
         })}>
                         <div className="form-section">
                             <label htmlFor="list-title">List title</label>
