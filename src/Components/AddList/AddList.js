@@ -63,7 +63,7 @@ export default class AddList extends React.Component {
                 </header>
                 
                 <section>
-                    <form id="add-list" onSubmit={e => this.context.addList(e, this.state.gear,{
+                    <form id="add-list" onSubmit={e => this.context.addList(e, {
             list_name : this.state.title,
             list_description : this.state.description,
             user_id: this.context.userId,

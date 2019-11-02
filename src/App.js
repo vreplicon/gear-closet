@@ -22,9 +22,7 @@ class App extends React.Component {
             users : [],
             gear : [],
 			lists : [],
-			gearListsLookup : [],
-			userId : 1,
-			gearForListAdd : null
+			userId : 1
           }
     }
 
@@ -67,7 +65,6 @@ class App extends React.Component {
 	componentDidMount() {
         this.contactApi('GET', `${config.API_ENDPOINT}/api/lists/user/${this.state.userId}`, this.setLists);
 		this.contactApi('GET', `${config.API_ENDPOINT}/api/gear/user/${this.state.userId}`, this.setGear);
-		this.contactApi('GET', `${config.API_ENDPOINT}/api/lookup`, this.setGearListsLookup);
     }
 
 	setLoggedIn = (loggedIn) => {
@@ -86,10 +83,6 @@ class App extends React.Component {
 		this.setState({lists : lists})
 	}
 
-	setGearListsLookup = (gearListsLookup) => {
-		this.setState({gearListsLookup : gearListsLookup})
-	}
-
 	addGear = (gear) => {
 		const newGear = [...this.state.gear, gear]
 		this.setGear(newGear)
@@ -102,36 +95,17 @@ class App extends React.Component {
 	}
 	
 	
-    handleListAdd = (e, gear, list) => {
+    handleListAdd = (e, list) => {
         e.preventDefault()
 		this.props.history.push('/home')
-		// this.setState({gearForListAdd: gear})
         this.contactApi('POST', `${config.API_ENDPOINT}/api/lists`, this.addList, list)
 	}
 
 
 	addList = (list) => {
-		// this.addListGearLookup(list, this.state.gearForListAdd)
 		const newLists = [...this.state.lists, list]
 		this.setLists(newLists)
 	}
-	
-	addListGearLookup = (list, gear) => {
-		gear.forEach(g => {
-			this.handleAddListGearLookup(g.id, list.id)
-		})
-		this.setState({gearForListAdd: null})
-	}
-
-	handleAddListGearLookup = (gear_id, list_id) => {
-		const newLookup = {user_id: this.state.userId, gear_id: gear_id, list_id: list_id}
-		this.contactApi('POST', `${config.API_ENDPOINT}/api/lookup`, this.addLookupToState, newLookup)
-	}
-
-	addLookupToState = (lookup) => {
-		this.setState({gearListsLookup: [...this.state.gearListsLookup, lookup]})
-	}
-
 
 	deleteGear = (idToDelete) => {
 		this.setGear(this.state.gear.filter(gear => gear.id !== idToDelete))
@@ -152,7 +126,6 @@ class App extends React.Component {
 			users : this.state.users,
 			gear : this.state.gear,
 			lists : this.state.lists,
-			gearListsLookup : this.state.gearListsLookup,
 			deleteGear : this.deleteGear,
 			deleteList : this.deleteList,
 			addGear : this.handleGearAdd,
