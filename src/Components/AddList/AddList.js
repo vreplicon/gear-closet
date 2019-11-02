@@ -1,6 +1,5 @@
 import React from 'react';
 import AppContext from '../AppContext/AppContext'
-import uuid from 'uuid'
 
 export default class AddList extends React.Component {
 
@@ -67,7 +66,8 @@ export default class AddList extends React.Component {
                     <form id="add-list" onSubmit={e => this.context.addList(e, this.state.gear,{
             list_name : this.state.title,
             list_description : this.state.description,
-            user_id: 1
+            user_id: this.context.userId,
+            gear : this.state.gear
         })}>
                         <div className="form-section">
                             <label htmlFor="list-title">List title</label>

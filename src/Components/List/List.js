@@ -8,14 +8,6 @@ export default class List extends React.Component {
     render() {
         let listId = parseInt(this.props.match.params.listId)  
         const list = this.context.lists.find(list => list.id === listId)
-        let gearIds = []
-        this.context.gearListsLookup.map((lookup) => {
-            if (list.id === lookup.list_id) {
-                gearIds.push(lookup.gear_id)
-            }
-
-            return gearIds
-        })
 
         return (
             <div className="list">
@@ -29,7 +21,7 @@ export default class List extends React.Component {
                 </section>
                 <section className="gear">
                     <h2>Gear</h2>
-                        <GearList filterIds={gearIds} />
+                        <GearList filterIds={list.gear} />
                 </section>
             </div>
         );

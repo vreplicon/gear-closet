@@ -9,7 +9,6 @@ import AppContext from './Components/AppContext/AppContext'
 import UserHome from './Components/UserHome/UserHome';
 // import Header from './Components/Header/Header';
 import List from './Components/List/List';
-import uuid from 'uuid'
 import config from './config'
 
 class App extends React.Component {
@@ -66,8 +65,8 @@ class App extends React.Component {
 	}
 	
 	componentDidMount() {
-        this.contactApi('GET', `${config.API_ENDPOINT}/api/lists/user/1`, this.setLists);
-		this.contactApi('GET', `${config.API_ENDPOINT}/api/gear`, this.setGear);
+        this.contactApi('GET', `${config.API_ENDPOINT}/api/lists/user/${this.state.userId}`, this.setLists);
+		this.contactApi('GET', `${config.API_ENDPOINT}/api/gear/user/${this.state.userId}`, this.setGear);
 		this.contactApi('GET', `${config.API_ENDPOINT}/api/lookup`, this.setGearListsLookup);
     }
 
@@ -106,13 +105,13 @@ class App extends React.Component {
     handleListAdd = (e, gear, list) => {
         e.preventDefault()
 		this.props.history.push('/home')
-		this.setState({gearForListAdd: gear})
+		// this.setState({gearForListAdd: gear})
         this.contactApi('POST', `${config.API_ENDPOINT}/api/lists`, this.addList, list)
 	}
 
 
 	addList = (list) => {
-		this.addListGearLookup(list, this.state.gearForListAdd)
+		// this.addListGearLookup(list, this.state.gearForListAdd)
 		const newLists = [...this.state.lists, list]
 		this.setLists(newLists)
 	}
@@ -122,11 +121,9 @@ class App extends React.Component {
 			this.handleAddListGearLookup(g.id, list.id)
 		})
 		this.setState({gearForListAdd: null})
-		// this.setState({gearListsLookup: [...this.state.gearListsLookup, ...newLookups]})
 	}
 
 	handleAddListGearLookup = (gear_id, list_id) => {
-		console.log(`New lookup ${gear_id} ${list_id}`)
 		const newLookup = {user_id: this.state.userId, gear_id: gear_id, list_id: list_id}
 		this.contactApi('POST', `${config.API_ENDPOINT}/api/lookup`, this.addLookupToState, newLookup)
 	}
@@ -160,7 +157,8 @@ class App extends React.Component {
 			deleteList : this.deleteList,
 			addGear : this.handleGearAdd,
 			addList : this.handleListAdd,
-			goBack : this.goBack
+			goBack : this.goBack,
+			userId : this.state.userId
 		}
 
     return (

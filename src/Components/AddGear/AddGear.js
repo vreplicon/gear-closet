@@ -1,6 +1,5 @@
 import React from 'react';
 import AppContext from '../AppContext/AppContext'
-import uuid from 'uuid'
 
 export default class AddGear extends React.Component {
     
@@ -30,7 +29,7 @@ export default class AddGear extends React.Component {
             
                 <section>
                     <form id="add-gear"  onSubmit={e => this.context.addGear(e, {
-                        user_id: 1,
+                        user_id: this.context.userId,
                         gear_name: this.state.name,
                         gear_type: this.state.type,
                         notes: this.state.notes,
