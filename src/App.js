@@ -10,6 +10,8 @@ import UserHome from './Components/UserHome/UserHome';
 // import Header from './Components/Header/Header';
 import List from './Components/List/List';
 import config from './config'
+import UpdateList from './Components/UpdateList/UpdateList';
+import UpdateGear from './Components/UpdateGear/UpdateGear';
 
 class App extends React.Component {
 
@@ -88,14 +90,14 @@ class App extends React.Component {
 		this.setGear(newGear)
 	}
 
-    handleGearAdd = (e, gear) => {
+    handleGearAddRequest = (e, gear) => {
         e.preventDefault();
         this.props.history.push('/home'); 
-        this.contactApi('POST', `${config.API_ENDPOINT}/api/gear`, this.addGear, gear);
+        this.contactApi('POST', `${config.API_ENDPOINT}/api/gear`, this.addGear, gear)
 	}
 	
 	
-    handleListAdd = (e, list) => {
+    handleListAddRequest = (e, list) => {
         e.preventDefault()
 		this.props.history.push('/home')
         this.contactApi('POST', `${config.API_ENDPOINT}/api/lists`, this.addList, list)
@@ -107,16 +109,58 @@ class App extends React.Component {
 		this.setLists(newLists)
 	}
 
+
+	handleGearDeleteRequest = (gearId) => {
+		this.props.history.push('/home');
+		this.contactApi('DELETE', `${config.API_ENDPOINT}/api/gear/${gearId}`);
+		this.deleteGear(gearId)
+	}
+
 	deleteGear = (idToDelete) => {
 		this.setGear(this.state.gear.filter(gear => gear.id !== idToDelete))
+	}
+
+	handleListDeleteRequest = (listId) => {
+		this.props.history.push('/home');
+		this.contactApi('DELETE', `${config.API_ENDPOINT}/api/lists/${listId}`)
+		this.deleteList(listId)
 	}
 
 	deleteList = (idToDelete) => {
 		this.setLists(this.state.lists.filter(list => list.id !== idToDelete))
 	}
 
+	handleListUpdateRequest = (e, list) => {
+		e.preventDefault()
+		this.props.history.push('/home')
+		this.contactApi('PATCH', `${config.API_ENDPOINT}/api/lists/${list.id}`, null, list)
+		this.updateList(list)
+	}
+
+	updateList = (list) => {
+		const listToUpdate = this.state.lists.find(l => l.id === list.id)
+		const updatedList = {...listToUpdate, ...list}
+		const newLists = this.state.lists.filter(l => l.id !== list.id)
+		this.setLists([...newLists, updatedList])
+	}
+
+	handleGearUpdateRequest = (e, gear) => {
+		e.preventDefault()
+		this.props.history.push('/home')
+		this.contactApi('PATCH', `${config.API_ENDPOINT}/api/gear/${gear.id}`, null, gear)
+		this.updateGear(gear)
+	}
+
+	updateGear = (gear) => {
+		const gearToUpdate = this.state.gear.find(g => g.id === gear.id)
+		const updatedGear = {...gearToUpdate, ...gear}
+		const newGear = this.state.gear.filter(g => g.id !== gear.id)
+		this.setGear([...newGear, updatedGear])
+	}
+	
+
 	goBack = () => {
-        this.props.history.goBack();
+        this.props.history.goBack()
 	}
 
 	render() {
@@ -126,10 +170,12 @@ class App extends React.Component {
 			users : this.state.users,
 			gear : this.state.gear,
 			lists : this.state.lists,
-			deleteGear : this.deleteGear,
-			deleteList : this.deleteList,
-			addGear : this.handleGearAdd,
-			addList : this.handleListAdd,
+			deleteGear : this.handleGearDeleteRequest,
+			deleteList : this.handleListDeleteRequest,
+			addGear : this.handleGearAddRequest,
+			addList : this.handleListAddRequest,
+			updateList : this.handleListUpdateRequest,
+			updateGear : this.handleGearUpdateRequest,
 			goBack : this.goBack,
 			userId : this.state.userId
 		}
@@ -153,6 +199,16 @@ class App extends React.Component {
 					<Route
 						path='/add-list'
 						component={AddList}
+					/>
+
+					<Route
+						path='/update-list/:listId'
+						component={UpdateList}
+					/>
+
+					<Route
+						path='/update-gear/:gearId'
+						component={UpdateGear}
 					/>
 
 					<Route

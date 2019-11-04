@@ -1,6 +1,7 @@
 import React from 'react';
 import AppContext from '../AppContext/AppContext'
 import GearDetails from '../GearDetails/GearDetails'
+import {Link} from 'react-router-dom'
 
 
 export default class GearHeader extends React.Component {
@@ -33,6 +34,9 @@ export default class GearHeader extends React.Component {
             { this.state.showDetails ? <GearDetails gear={this.props.gear}/> : null }
             {this.props.hideDelete ? null :
             <button onClick={() => this.context.deleteGear(this.props.gear.id)}>Delete</button>}
+            <Link to={`/update-gear/${this.props.gear.id}`}>
+                    <button>Edit</button>
+            </Link>
             </div>
         );
     }
