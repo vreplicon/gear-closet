@@ -1,31 +1,27 @@
 import React from 'react';
+import {GoogleLogin} from 'react-google-login'
+import AppContext from '../AppContext/AppContext'
 
 export default class SignUpForm extends React.Component {
+
+    static contextType = AppContext
+
+    responseGoogle = (response) => {
+        this.context.signUp(response.profileObj.email)
+      }
     render() {
         return (
             <section>
                 <header>
                     <h3>Start Tracking Your Gear!</h3>
                 </header>
-                <form className='signup-form'>
-                    <div>
-                    <label for="first-name">First name</label>
-                    <input placeholder='First Name' type="text" name='first-name' id='first-name' />
-                    </div>
-                    <div>
-                    <label for="last-name">Last name</label>
-                    <input type="text" name='last-name' id='last-name' placeholder='Last Name' />
-                    </div>
-                    <div>
-                    <label for="username">Email</label>
-                    <input type="text" name='username' id='username' />
-                    </div>
-                    <div>
-                    <label for="password">Password</label>
-                    <input type="password" name='password' id='password' />
-                    </div>
-                    <button type='submit'>Sign Up</button>
-                </form>
+                <GoogleLogin
+    clientId="238713141249-8q0vr5q3mgkfn1rt075v69oc66s92l13.apps.googleusercontent.com"
+    buttonText="Sign Up With Google"
+    onSuccess={this.responseGoogle}
+    onFailure={this.responseGoogle}
+    cookiePolicy={'single_host_origin'}
+  />
             </section>
         );
     }

@@ -1,5 +1,6 @@
 import React from 'react';
-// import SignUpForm from '../SignUpForm/SignUpForm';
+import SignUpForm from '../SignUpForm/SignUpForm';
+import SignInForm from '../SignInForm/SignInForm'
 import {Link} from 'react-router-dom'
 
 export default class LandingPage extends React.Component {
@@ -39,7 +40,8 @@ export default class LandingPage extends React.Component {
                 <Link to='/home'>
                     <button>Head to example homepage</button>
                 </Link>
-                {/* <SignUpForm /> */}
+                <SignUpForm />
+                <SignInForm/>
             </div>
         );
     }

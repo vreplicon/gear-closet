@@ -24,7 +24,7 @@ class App extends React.Component {
             users : [],
             gear : [],
 			lists : [],
-			userId : 1
+			userId : null
           }
     }
 
@@ -34,7 +34,7 @@ class App extends React.Component {
             method: action,
             body : (body) ? JSON.stringify(body) : null,
             headers: {
-                "Content-Type": "application/json",
+				"Content-Type": "application/json"
             }
         };
         fetch(url, options)
@@ -65,9 +65,26 @@ class App extends React.Component {
 	}
 	
 	componentDidMount() {
-        this.contactApi('GET', `${config.API_ENDPOINT}/api/lists/user/${this.state.userId}`, this.setLists);
-		this.contactApi('GET', `${config.API_ENDPOINT}/api/gear/user/${this.state.userId}`, this.setGear);
-    }
+		// const userId = this.contactApi('GET', ``)
+
+	}
+	
+	handleLoginRequest = (email) => {
+       this.contactApi('POST', `${config.API_ENDPOINT}/api/users/sign-in`, this.getUserInfo, {email})
+	}
+
+	handleSignUpRequest = (email) => {
+		this.contactApi('POST', `${config.API_ENDPOINT}/api/users/sign-up`, this.getUserInfo, {email})
+		// this.setLoggedIn(true)
+	}
+
+	getUserInfo = (user) => {
+		this.setLoggedIn(true)
+		this.contactApi('GET', `${config.API_ENDPOINT}/api/lists/user/${user.id}`, this.setLists);
+		this.contactApi('GET', `${config.API_ENDPOINT}/api/gear/user/${user.id}`, this.setGear);
+		this.props.history.push('/home');
+		this.setState({userId : user.id})
+	}
 
 	setLoggedIn = (loggedIn) => {
 		this.setState({loggedIn : loggedIn})
@@ -177,7 +194,9 @@ class App extends React.Component {
 			updateList : this.handleListUpdateRequest,
 			updateGear : this.handleGearUpdateRequest,
 			goBack : this.goBack,
-			userId : this.state.userId
+			userId : this.state.userId,
+			login : this.handleLoginRequest,
+			signUp : this.handleSignUpRequest
 		}
 
     return (
