@@ -1,6 +1,7 @@
 import React from 'react';
 import AppContext from '../AppContext/AppContext'
 import {GoogleLogin} from 'react-google-login'
+import config from '../../config'
 
 
 export default class SignInFrom extends React.Component {
@@ -18,7 +19,7 @@ export default class SignInFrom extends React.Component {
                     <h3>Already have an accout? Login here!</h3>
                 </header>
                 <GoogleLogin
-    clientId="238713141249-8q0vr5q3mgkfn1rt075v69oc66s92l13.apps.googleusercontent.com"
+    clientId={config.CLIENT}
     buttonText="Login With Google"
     onSuccess={this.responseGoogle}
     onFailure={this.responseGoogle}

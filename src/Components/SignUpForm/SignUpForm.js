@@ -1,6 +1,7 @@
 import React from 'react';
 import {GoogleLogin} from 'react-google-login'
 import AppContext from '../AppContext/AppContext'
+import config from '../../config'
 
 export default class SignUpForm extends React.Component {
 
@@ -16,7 +17,7 @@ export default class SignUpForm extends React.Component {
                     <h3>Start Tracking Your Gear!</h3>
                 </header>
                 <GoogleLogin
-    clientId="238713141249-8q0vr5q3mgkfn1rt075v69oc66s92l13.apps.googleusercontent.com"
+    clientId={config.CLIENT}
     buttonText="Sign Up With Google"
     onSuccess={this.responseGoogle}
     onFailure={this.responseGoogle}

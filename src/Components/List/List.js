@@ -6,7 +6,6 @@ export default class List extends React.Component {
     static contextType = AppContext
 
     render() {
-        console.log(this.props)
         let listId = parseInt(this.props.match.params.listId)  
         const list = this.context.lists.find(list => list.id === listId)
 

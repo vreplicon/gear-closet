@@ -7,7 +7,6 @@ import AddGear from './Components/AddGear/AddGear';
 import AddList from './Components/AddList/AddList';
 import AppContext from './Components/AppContext/AppContext'
 import UserHome from './Components/UserHome/UserHome';
-// import Header from './Components/Header/Header';
 import List from './Components/List/List';
 import config from './config'
 import UpdateList from './Components/UpdateList/UpdateList';
@@ -88,6 +87,10 @@ class App extends React.Component {
 
 	setLoggedIn = (loggedIn) => {
 		this.setState({loggedIn : loggedIn})
+	}
+
+	setUserId = (userId) => {
+		this.setState({userId})
 	}
 
     setUsers = (users) => {
@@ -175,6 +178,9 @@ class App extends React.Component {
 		this.setGear([...newGear, updatedGear])
 	}
 	
+	showExamplePage = () => {
+		this.getUserInfo({id: 1})
+	}
 
 	goBack = () => {
         this.props.history.goBack()
@@ -196,7 +202,8 @@ class App extends React.Component {
 			goBack : this.goBack,
 			userId : this.state.userId,
 			login : this.handleLoginRequest,
-			signUp : this.handleSignUpRequest
+			signUp : this.handleSignUpRequest,
+			showExamplePage : this.showExamplePage
 		}
 
     return (

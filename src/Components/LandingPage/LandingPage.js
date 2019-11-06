@@ -2,8 +2,11 @@ import React from 'react';
 import SignUpForm from '../SignUpForm/SignUpForm';
 import SignInForm from '../SignInForm/SignInForm'
 import {Link} from 'react-router-dom'
+import AppContext from '../AppContext/AppContext'
 
 export default class LandingPage extends React.Component {
+    static contextType = AppContext
+
     render() {
         return (
             <div className="landing-page">
@@ -38,7 +41,7 @@ export default class LandingPage extends React.Component {
                 </section>
 
                 <Link to='/home'>
-                    <button>Head to example homepage</button>
+                    <button onClick={() => this.context.showExamplePage()}>Head to example homepage</button>
                 </Link>
                 <SignUpForm />
                 <SignInForm/>
