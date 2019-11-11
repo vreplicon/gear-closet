@@ -115,9 +115,6 @@ header, .one, .two, .three {
     color: blue;
 }
 
-.gear-title:hover {
-    cursor: pointer;
-}
 
 a {
     text-decoration: none;
