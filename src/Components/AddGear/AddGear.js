@@ -52,7 +52,7 @@ export default class AddGear extends React.Component {
                         </div>
 
                         <div className="form-section">
-                            <label htmlFor="gear-weight">Weight</label>
+                            <label htmlFor="gear-weight">Weight (Optional)</label>
                             <input type="number" name="gear-weight" placeholder="5" 
                             onChange={(e) => this.setState({weight: e.target.value})}/>
                             <select onChange={(e) => this.setState({unit: e.target.value})}>
@@ -63,7 +63,7 @@ export default class AddGear extends React.Component {
                         </div>
                         
                         <div className="form-section">
-                            <label htmlFor="notes">Notes</label>
+                            <label htmlFor="notes">Notes (Optional)</label>
                             <textarea name="notes" onChange={(e) => this.setState({notes: e.target.value})}></textarea>
                         </div>
           

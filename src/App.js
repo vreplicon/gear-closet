@@ -63,18 +63,12 @@ class App extends React.Component {
         
 	}
 	
-	componentDidMount() {
-		// const userId = this.contactApi('GET', ``)
-
-	}
-	
 	handleLoginRequest = (email) => {
        this.contactApi('POST', `${config.API_ENDPOINT}/api/users/sign-in`, this.getUserInfo, {email})
 	}
 
 	handleSignUpRequest = (email) => {
 		this.contactApi('POST', `${config.API_ENDPOINT}/api/users/sign-up`, this.getUserInfo, {email})
-		// this.setLoggedIn(true)
 	}
 
 	getUserInfo = (user) => {
