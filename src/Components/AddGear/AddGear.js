@@ -1,4 +1,5 @@
 import React from 'react';
+import './AddGear.css'
 import AppContext from '../AppContext/AppContext'
 import uuid from 'uuid'
 
@@ -40,13 +41,13 @@ export default class AddGear extends React.Component {
         })}>
                         <div className="form-section">
                             <label for="gear-name">Name</label>
-                            <input type="text" name="gear-name" placeholder="Crash Pad" required 
+                            <input className="gear-name" type="text" name="gear-name" placeholder="Crash Pad" required 
                             onChange={(e) => this.setState({name: e.target.value})}/>
                         </div>
                         
                         <div className="gear-type form-section">
                             <label for="gear-type">Gear Type</label>
-                            <select onChange={(e) => this.setState({type: e.target.value})}>
+                            <select className="dropdown" onChange={(e) => this.setState({type: e.target.value})}>
                                 <option>Rock Climbing</option>
                                 <option>Camping</option>
                                 <option>Other</option>
@@ -55,9 +56,9 @@ export default class AddGear extends React.Component {
 
                         <div className="form-section">
                             <label for="gear-weight">Weight</label>
-                            <input type="number" name="gear-weight" placeholder="5" 
+                            <input className="gear-weight" type="number" name="gear-weight" placeholder="5" 
                             onChange={(e) => this.setState({weight: e.target.value})}/>
-                            <select onChange={(e) => this.setState({unit: e.target.value})}>
+                            <select className="dropdown" onChange={(e) => this.setState({unit: e.target.value})}>
                                 <option>oz</option>
                                 <option>lb</option>
                                 <option>g</option>
@@ -66,7 +67,7 @@ export default class AddGear extends React.Component {
                         
                         <div className="form-section">
                             <label for="notes">Notes</label>
-                            <textarea name="notes" onChange={(e) => this.setState({notes: e.target.value})}></textarea>
+                            <textarea className="gear-notes" name="notes" onChange={(e) => this.setState({notes: e.target.value})}></textarea>
                         </div>
           
                         <button type="submit">Submit</button>

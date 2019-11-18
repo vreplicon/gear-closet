@@ -1,0 +1,58 @@
+.list-title, .trip-description {
+    margin: 0;
+    padding: 0.8rem 1.6rem;
+    /* color: inherit; */
+    /* width: 100%; */
+    /* font-family: inherit;
+    font-size: 2.1rem;
+    font-weight: inherit;
+    line-height: 1.8; */
+    border: none;
+    border-radius: 10px;
+    transition: box-shadow 300ms;
+  }
+
+  .list-title:focus, .trip-description:focus {
+    outline: none;
+    box-shadow: 0.2rem 0.8rem 1.6rem #006E73;
+  }
+
+
+  .gear-list input[type="checkbox"] {
+    opacity: 0;
+}
+
+.gear-list label::before{
+    content: "";
+    display: inline-block;
+    
+    height: 16px;
+    width: 16px;
+    
+    border: 1px solid;   
+}
+
+.gear-list label::after {
+    content: "";
+    display: inline-block;
+    height: 6px;
+    width: 9px;
+    border-left: 2px solid;
+    border-bottom: 2px solid;
+    
+    transform: rotate(-45deg);
+}
+
+/*Hide the checkmark by default*/
+.gear-list input[type="checkbox"] + label::after {
+    content: none;
+}
+/*Unhide the checkmark on the checked state*/
+.gear-list input[type="checkbox"]:checked + label::after {
+    content: "";
+}
+
+/*Adding focus styles on the outer-box of the fake checkbox*/
+.gear-list input[type="checkbox"]:focus + label::before {
+    outline: rgb(59, 153, 252) auto 5px;
+}

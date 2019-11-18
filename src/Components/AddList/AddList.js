@@ -1,4 +1,5 @@
 import React from 'react';
+import './AddList.css'
 import AppContext from '../AppContext/AppContext'
 import uuid from 'uuid'
 
@@ -49,7 +50,7 @@ export default class AddList extends React.Component {
                     type="checkbox" 
                     className="gear-checkbox"
                     value={gear.name} 
-                  
+                    checked={this.state.gear.includes(gear.id) ? true : false}
                     />
                 {gear.name}
                 </label>
@@ -72,7 +73,8 @@ export default class AddList extends React.Component {
         })}>
                         <div className="form-section">
                             <label htmlFor="list-title">List title</label>
-                            <input 
+                            <input
+                                className="list-title" 
                                 type="text" 
                                 name="list-title" 
                                 placeholder="Freerider Climb" 
@@ -82,7 +84,7 @@ export default class AddList extends React.Component {
                         
                         <div className="form-section">
                             <label htmlFor="trip-description">Trip summary</label>
-                            <textarea name="trip-description" rows="10"  onChange={(e) => this.setState({description: e.target.value})}></textarea>
+                            <textarea className="trip-description" name="trip-description" rows="10"  onChange={(e) => this.setState({description: e.target.value})}></textarea>
                         </div>
                         
                         <div className="form-section">

@@ -1,0 +1,11 @@
+.gear-header {
+    background-color: #D3EDD5;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 0.75em;
+}
+
+h3.gear-name {
+    margin: 10px;
+    color: #006E73;
+}
