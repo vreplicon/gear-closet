@@ -123,7 +123,6 @@ class App extends React.Component {
 		this.setLists(newLists)
 	}
 
-
 	handleGearDeleteRequest = (gearId) => {
 		this.props.history.push('/home');
 		this.contactApi('DELETE', `${config.API_ENDPOINT}/api/gear/${gearId}`);

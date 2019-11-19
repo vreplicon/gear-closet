@@ -15,12 +15,14 @@ export default class GearHeader extends React.Component {
         super(props)
 
         this.state = {
-            showDetails : false
+            showDetails : false,
+            buttonText: "Show Details"
         }
     }
 
     toggleDetails() {
-        this.setState({showDetails : !(this.state.showDetails)})
+        const newText = (this.state.showDetails ? "Show Details" : "Hide Details")
+        this.setState({showDetails : !(this.state.showDetails), buttonText : newText})
     }
 
     static defaultProps = {
@@ -37,7 +39,7 @@ export default class GearHeader extends React.Component {
             <Link to={`/update-gear/${this.props.gear.id}`}>
                     <button>Edit</button>
             </Link>
-            <button  onClick={() => this.toggleDetails()}>Toggle Details</button>
+            <button  onClick={() => this.toggleDetails()}>{this.state.buttonText}</button>
             </div>
         );
     }

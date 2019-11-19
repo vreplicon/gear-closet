@@ -24,7 +24,7 @@ export default class AddGear extends React.Component {
                 
                 <header className="banner">
                     <h1>Add a Piece of Gear</h1>
-                    <button onClick={() => this.context.goBack()}>Cancel</button>
+                    <button onClick={() => this.context.goBack()}>Go Back</button>
                 </header>
             
                 <section>
@@ -68,6 +68,7 @@ export default class AddGear extends React.Component {
                         </div>
           
                         <button type="submit">Submit</button>
+                        <button onClick={() => this.context.goBack()}>Cancel</button>
                       
                     </form>
                 </section>

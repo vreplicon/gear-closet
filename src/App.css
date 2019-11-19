@@ -123,3 +123,14 @@ a {
 dt {
     font-weight: bold;
 }
+
+.details-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.detail-item {
+    display: block;
+    margin: 2%;
+}
