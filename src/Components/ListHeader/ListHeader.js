@@ -12,12 +12,13 @@ export default class ListHeader extends React.Component {
         const list = this.props.list
         return (
             <div className="list-header">
+                <h3>{list.list_name}</h3>
                 <Link to={`/list/${list.id}`} className="list-name">
-                    <h3>{list.list_name}</h3>
+                <button>View</button>
                 </Link>
                 <button onClick={() => this.context.deleteList(list.id)}>Delete</button>
                 <Link to={`/update-list/${list.id}`}>
-                    <button>Update list</button>
+                    <button>Edit</button>
                 </Link>
             </div>
         );

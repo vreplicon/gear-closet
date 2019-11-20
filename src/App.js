@@ -23,7 +23,8 @@ class App extends React.Component {
             users : [],
             gear : [],
 			lists : [],
-			userId : null
+			userId : null,
+			allowApiContact : true
           }
     }
 
@@ -106,15 +107,19 @@ class App extends React.Component {
 
     handleGearAddRequest = (e, gear) => {
         e.preventDefault();
-        this.props.history.push('/home'); 
+		this.props.history.push('/home'); 
+		if (this.state.allowApiContact) {
         this.contactApi('POST', `${config.API_ENDPOINT}/api/gear`, this.addGear, gear)
+	}
 	}
 	
 	
     handleListAddRequest = (e, list) => {
         e.preventDefault()
 		this.props.history.push('/home')
+		if (this.state.allowApiContact) {
         this.contactApi('POST', `${config.API_ENDPOINT}/api/lists`, this.addList, list)
+		}
 	}
 
 
@@ -125,8 +130,11 @@ class App extends React.Component {
 
 	handleGearDeleteRequest = (gearId) => {
 		this.props.history.push('/home');
+		if (this.state.allowApiContact) {
 		this.contactApi('DELETE', `${config.API_ENDPOINT}/api/gear/${gearId}`);
+		}
 		this.deleteGear(gearId)
+	
 	}
 
 	deleteGear = (idToDelete) => {
@@ -135,8 +143,11 @@ class App extends React.Component {
 
 	handleListDeleteRequest = (listId) => {
 		this.props.history.push('/home');
+		if (this.state.allowApiContact) {
 		this.contactApi('DELETE', `${config.API_ENDPOINT}/api/lists/${listId}`)
+		}
 		this.deleteList(listId)
+		
 	}
 
 	deleteList = (idToDelete) => {
@@ -146,7 +157,9 @@ class App extends React.Component {
 	handleListUpdateRequest = (e, list) => {
 		e.preventDefault()
 		this.props.history.push('/home')
+		if (this.state.allowApiContact) {
 		this.contactApi('PATCH', `${config.API_ENDPOINT}/api/lists/${list.id}`, null, list)
+		}
 		this.updateList(list)
 	}
 
@@ -160,7 +173,9 @@ class App extends React.Component {
 	handleGearUpdateRequest = (e, gear) => {
 		e.preventDefault()
 		this.props.history.push('/home')
+		if (this.state.allowApiContact) {
 		this.contactApi('PATCH', `${config.API_ENDPOINT}/api/gear/${gear.id}`, null, gear)
+		}
 		this.updateGear(gear)
 	}
 
@@ -173,6 +188,7 @@ class App extends React.Component {
 	
 	showExamplePage = () => {
 		this.getUserInfo({id: 1})
+		this.setState({allowApiContact : false})
 	}
 
 	goBack = () => {
@@ -201,7 +217,6 @@ class App extends React.Component {
 
     return (
 		<AppContext.Provider value={contextValue}>
-			{/* <Header /> */}
 			<main className='App'>
 				<Switch>
 					

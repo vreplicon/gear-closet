@@ -112,7 +112,7 @@ header, .one, .two, .three {
 }
 
 .gear-title {
-    color: blue;
+    color: black;
 }
 
 
@@ -133,4 +133,10 @@ dt {
 .detail-item {
     display: block;
     margin: 2%;
+}
+
+.gear-header, .list-header {
+    border: 5px solid lightgray;
+    margin: 5px;
+    padding: 5px;
 }
