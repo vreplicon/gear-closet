@@ -14,7 +14,7 @@ export default class ListHeader extends React.Component {
             <div className="list-header">
                 <h3>{list.list_name}</h3>
                 <Link to={`/list/${list.id}`} className="list-name">
-                <button>View</button>
+                    <button>View</button>
                 </Link>
                 <button onClick={() => this.context.deleteList(list.id)}>Delete</button>
                 <Link to={`/update-list/${list.id}`}>

@@ -17,7 +17,7 @@ export default class List extends React.Component {
                 </header>
       
                 <section className="description">
-                    <p>{list.description}</p>
+                    <p>{list.list_description}</p>
                 </section>
                 <section className="gear">
                     <h2>Gear</h2>
