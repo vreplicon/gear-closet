@@ -1,7 +1,6 @@
 import React from 'react';
 import './AddGear.css'
 import AppContext from '../AppContext/AppContext'
-import uuid from 'uuid'
 
 export default class AddGear extends React.Component {
     
@@ -26,18 +25,17 @@ export default class AddGear extends React.Component {
                 
                 <header className="banner">
                     <h1>Add a Piece of Gear</h1>
-                    <button onClick={() => this.context.goBack()}>Cancel</button>
+                    <button onClick={() => this.context.goBack()}>Go Back</button>
                 </header>
             
                 <section>
                     <form id="add-gear"  onSubmit={e => this.context.addGear(e, {
-                        id: uuid.v4(),
-                        user_id: 1,
-                        name: this.state.name,
-                        type: this.state.type,
+                        user_id: this.context.userId,
+                        gear_name: this.state.name,
+                        gear_type: this.state.type,
                         notes: this.state.notes,
-                        weight: this.state.weight,
-                        unit: this.state.unit
+                        gear_weight: this.state.weight,
+                        weight_unit: this.state.unit
         })}>
                         <div className="form-section">
                             <label for="gear-name">Name</label>
@@ -46,7 +44,7 @@ export default class AddGear extends React.Component {
                         </div>
                         
                         <div className="gear-type form-section">
-                            <label for="gear-type">Gear Type</label>
+                            <label htmlFor="gear-type">Gear Type</label>
                             <select className="dropdown" onChange={(e) => this.setState({type: e.target.value})}>
                                 <option>Rock Climbing</option>
                                 <option>Camping</option>
@@ -55,7 +53,7 @@ export default class AddGear extends React.Component {
                         </div>
 
                         <div className="form-section">
-                            <label for="gear-weight">Weight</label>
+                            <label htmlFor="gear-weight">Weight (Optional)</label>
                             <input className="gear-weight" type="number" name="gear-weight" placeholder="5" 
                             onChange={(e) => this.setState({weight: e.target.value})}/>
                             <select className="dropdown" onChange={(e) => this.setState({unit: e.target.value})}>
@@ -66,11 +64,12 @@ export default class AddGear extends React.Component {
                         </div>
                         
                         <div className="form-section">
-                            <label for="notes">Notes</label>
+                            <label for="notes">Notes (Optional)</label>
                             <textarea className="gear-notes" name="notes" onChange={(e) => this.setState({notes: e.target.value})}></textarea>
                         </div>
           
                         <button type="submit">Submit</button>
+                        <button onClick={() => this.context.goBack()}>Cancel</button>
                       
                     </form>
                 </section>

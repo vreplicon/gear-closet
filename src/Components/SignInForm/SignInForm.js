@@ -1,29 +1,31 @@
 import React from 'react';
+import AppContext from '../AppContext/AppContext'
+import {GoogleLogin} from 'react-google-login'
+import config from '../../config'
 
 
 export default class SignInFrom extends React.Component {
+    static contextType = AppContext
+
+    responseGoogle = (response) => {
+        this.context.login(response.profileObj.email)
+      }
+
     render() {
+
         return (
-            <div className="sign-in-form">
-                <header class="banner">
-                    <h1>Sign In</h1>
+            <section>
+                <header>
+                    <h3>Already have an accout? Login here!</h3>
                 </header>
-                
-                <section>
-                    <form id="sign-in-form">
-                        <div class="form-section">
-                            <label for="email">Email</label>
-                            <input type="text" name="email" required />
-                        </div>
-                        <div class="form-section">
-                            <label for="password">Password</label>
-                            <input type="text" name="password" required />
-                        </div>
-            
-                        <button type="submit">Submit</button>
-                    </form>
-                </section>
-            </div>
+                <GoogleLogin
+    clientId={config.CLIENT}
+    buttonText="Login With Google"
+    onSuccess={this.responseGoogle}
+    onFailure={this.responseGoogle}
+    cookiePolicy={'single_host_origin'}
+  />
+            </section>
         );
     }
 }

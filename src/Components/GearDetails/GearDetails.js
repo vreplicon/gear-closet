@@ -9,14 +9,26 @@ export default class GearDetails extends React.Component {
 
     render() {
         return (
-            <div>
-                <dl>
+            <div className="gear-details">
+                <dl className="details-list">
+                    <div className="detail-item">
                 <dt>Type:</dt>
-                <dd>{this.props.gear.type}</dd>
-                <dt>Notes:</dt>
-                <dd>{this.props.gear.notes}</dd>
-                <dt>Weight:</dt>
-                <dd>{`${this.props.gear.weight} ${this.props.gear.unit}`}</dd>
+                <dd>{this.props.gear.gear_type}</dd>
+                </div>
+
+                <div className="detail-item">
+                {this.props.gear.gear_weight > 0 ? <dt>Weight:</dt> : null}
+                {this.props.gear.gear_weight > 0 ? 
+                <dd>{`${this.props.gear.gear_weight} ${this.props.gear.weight_unit}`}</dd>
+                : null }
+                </div>
+
+                <div className="detail-item">
+                {this.props.gear.notes ? <dt>Notes:</dt> : null}
+                {this.props.gear.notes ? <dd>{this.props.gear.notes}</dd> : null}
+                </div>
+
+
               </dl>
             </div>
         )

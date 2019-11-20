@@ -143,8 +143,38 @@ header, .one, .two, .three {
     text-align: center;
 }
 
+<<<<<<< HEAD
+=======
+.gear-title {
+    color: black;
+}
+
+>>>>>>> master
 
 a {
     text-decoration: none;
 }
 
+<<<<<<< HEAD
+=======
+dt {
+    font-weight: bold;
+}
+
+.details-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.detail-item {
+    display: block;
+    margin: 2%;
+}
+
+.gear-header, .list-header {
+    border: 5px solid lightgray;
+    margin: 5px;
+    padding: 5px;
+}
+>>>>>>> master

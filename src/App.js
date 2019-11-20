@@ -7,9 +7,10 @@ import AddGear from './Components/AddGear/AddGear';
 import AddList from './Components/AddList/AddList';
 import AppContext from './Components/AppContext/AppContext'
 import UserHome from './Components/UserHome/UserHome';
-// import Header from './Components/Header/Header';
 import List from './Components/List/List';
-import uuid from 'uuid'
+import config from './config'
+import UpdateList from './Components/UpdateList/UpdateList';
+import UpdateGear from './Components/UpdateGear/UpdateGear';
 
 class App extends React.Component {
 
@@ -22,12 +23,69 @@ class App extends React.Component {
             users : [],
             gear : [],
 			lists : [],
-			gearListsLookup : []
+			userId : null,
+			allowApiContact : true
           }
     }
 
+
+	contactApi(action, url, callback = null, body = null) {
+        const options =  {
+            method: action,
+            body : (body) ? JSON.stringify(body) : null,
+            headers: {
+				"Content-Type": "application/json"
+            }
+        };
+        fetch(url, options)
+            .then(res => {
+              if (!res.ok) {
+                // get the error message from the response,
+                return res.json().then(error => {
+                  // then throw it
+                  throw error
+                })
+              } else if (res.status !== 204) {
+                return res.json()
+              }
+              
+            })
+            .then(data => {
+              // call the callback when the request is successful
+              // this is where the App component can remove it from state
+              if (callback) {
+                callback(data);
+              }
+              
+            })
+            .catch(error => {
+              console.error(error)
+            })
+        
+	}
+	
+	handleLoginRequest = (email) => {
+       this.contactApi('POST', `${config.API_ENDPOINT}/api/users/sign-in`, this.getUserInfo, {email})
+	}
+
+	handleSignUpRequest = (email) => {
+		this.contactApi('POST', `${config.API_ENDPOINT}/api/users/sign-up`, this.getUserInfo, {email})
+	}
+
+	getUserInfo = (user) => {
+		this.setLoggedIn(true)
+		this.contactApi('GET', `${config.API_ENDPOINT}/api/lists/user/${user.id}`, this.setLists);
+		this.contactApi('GET', `${config.API_ENDPOINT}/api/gear/user/${user.id}`, this.setGear);
+		this.props.history.push('/home');
+		this.setState({userId : user.id})
+	}
+
 	setLoggedIn = (loggedIn) => {
 		this.setState({loggedIn : loggedIn})
+	}
+
+	setUserId = (userId) => {
+		this.setState({userId})
 	}
 
     setUsers = (users) => {
@@ -42,55 +100,99 @@ class App extends React.Component {
 		this.setState({lists : lists})
 	}
 
-	setGearListsLookup = (gearListsLookup) => {
-		this.setState({gearListsLookup : gearListsLookup})
-	}
-
-	addGear = (e, gear) => {
-		e.preventDefault();
-        this.props.history.push('/home');
+	addGear = (gear) => {
 		const newGear = [...this.state.gear, gear]
 		this.setGear(newGear)
 	}
 
-	addList = (e, list) => {
-		e.preventDefault()
+    handleGearAddRequest = (e, gear) => {
+        e.preventDefault();
+		this.props.history.push('/home'); 
+		if (this.state.allowApiContact) {
+        this.contactApi('POST', `${config.API_ENDPOINT}/api/gear`, this.addGear, gear)
+	}
+	}
+	
+	
+    handleListAddRequest = (e, list) => {
+        e.preventDefault()
 		this.props.history.push('/home')
-		this.addListGearLookup(list, list.gear)
+		if (this.state.allowApiContact) {
+        this.contactApi('POST', `${config.API_ENDPOINT}/api/lists`, this.addList, list)
+		}
+	}
+
+
+	addList = (list) => {
 		const newLists = [...this.state.lists, list]
 		this.setLists(newLists)
 	}
-	
-	addListGearLookup = (list, gear) => {
-		const newLookups = gear.map((g) => {
-			return ({
-				id : uuid.v4(),
-				gear_id : g.id,
-				list_id : list.id,
-				user_id : 1
-			})
-		})
-		this.setState({gearListsLookup: [...this.state.gearListsLookup, ...newLookups]})
-	}
 
+	handleGearDeleteRequest = (gearId) => {
+		this.props.history.push('/home');
+		if (this.state.allowApiContact) {
+		this.contactApi('DELETE', `${config.API_ENDPOINT}/api/gear/${gearId}`);
+		}
+		this.deleteGear(gearId)
+	
+	}
 
 	deleteGear = (idToDelete) => {
 		this.setGear(this.state.gear.filter(gear => gear.id !== idToDelete))
+	}
+
+	handleListDeleteRequest = (listId) => {
+		this.props.history.push('/home');
+		if (this.state.allowApiContact) {
+		this.contactApi('DELETE', `${config.API_ENDPOINT}/api/lists/${listId}`)
+		}
+		this.deleteList(listId)
+		
 	}
 
 	deleteList = (idToDelete) => {
 		this.setLists(this.state.lists.filter(list => list.id !== idToDelete))
 	}
 
-	goBack = () => {
-        this.props.history.goBack();
+	handleListUpdateRequest = (e, list) => {
+		e.preventDefault()
+		this.props.history.push('/home')
+		if (this.state.allowApiContact) {
+		this.contactApi('PATCH', `${config.API_ENDPOINT}/api/lists/${list.id}`, null, list)
+		}
+		this.updateList(list)
 	}
 
-	componentDidMount() {
-		this.setUsers(this.props.data.users)
-		this.setGear(this.props.data.gear)
-		this.setLists(this.props.data.lists)
-		this.setGearListsLookup(this.props.data.gear_lists_lookup)
+	updateList = (list) => {
+		const listToUpdate = this.state.lists.find(l => l.id === list.id)
+		const updatedList = {...listToUpdate, ...list}
+		const newLists = this.state.lists.filter(l => l.id !== list.id)
+		this.setLists([...newLists, updatedList])
+	}
+
+	handleGearUpdateRequest = (e, gear) => {
+		e.preventDefault()
+		this.props.history.push('/home')
+		if (this.state.allowApiContact) {
+		this.contactApi('PATCH', `${config.API_ENDPOINT}/api/gear/${gear.id}`, null, gear)
+		}
+		this.updateGear(gear)
+	}
+
+	updateGear = (gear) => {
+		const gearToUpdate = this.state.gear.find(g => g.id === gear.id)
+		const updatedGear = {...gearToUpdate, ...gear}
+		const newGear = this.state.gear.filter(g => g.id !== gear.id)
+		this.setGear([...newGear, updatedGear])
+	}
+	
+	showExamplePage = () => {
+		this.getUserInfo({id: 1})
+		this.setState({allowApiContact : false})
+	}
+
+	goBack = () => {
+        this.props.history.goBack()
 	}
 
 	render() {
@@ -100,17 +202,21 @@ class App extends React.Component {
 			users : this.state.users,
 			gear : this.state.gear,
 			lists : this.state.lists,
-			gearListsLookup : this.state.gearListsLookup,
-			deleteGear : this.deleteGear,
-			deleteList : this.deleteList,
-			addGear : this.addGear,
-			addList : this.addList,
-			goBack : this.goBack
+			deleteGear : this.handleGearDeleteRequest,
+			deleteList : this.handleListDeleteRequest,
+			addGear : this.handleGearAddRequest,
+			addList : this.handleListAddRequest,
+			updateList : this.handleListUpdateRequest,
+			updateGear : this.handleGearUpdateRequest,
+			goBack : this.goBack,
+			userId : this.state.userId,
+			login : this.handleLoginRequest,
+			signUp : this.handleSignUpRequest,
+			showExamplePage : this.showExamplePage
 		}
 
     return (
 		<AppContext.Provider value={contextValue}>
-			{/* <Header /> */}
 			<main className='App'>
 				<Switch>
 					
@@ -127,6 +233,16 @@ class App extends React.Component {
 					<Route
 						path='/add-list'
 						component={AddList}
+					/>
+
+					<Route
+						path='/update-list/:listId'
+						component={UpdateList}
+					/>
+
+					<Route
+						path='/update-gear/:gearId'
+						component={UpdateGear}
 					/>
 
 					<Route
