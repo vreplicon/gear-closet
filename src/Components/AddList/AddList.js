@@ -43,15 +43,17 @@ export default class AddList extends React.Component {
 
         const gearOpts = this.context.gear.map((gear, i) => {
             return (
-                <label key={i}>
+
+                <label className="check-container" key={i}>
+                {gear.gear_name}
                 <input 
                     onChange={() => this.toggleItem(gear)}
                     type="checkbox" 
                     className="gear-checkbox"
                     value={gear.gear_name} 
-                    checked={this.state.gear.includes(gear.id) ? true : false}
+                    // checked={this.state.gear.includes(gear.id) ? true : false}
                     />
-                {gear.gear_name}
+                <span class="checkmark"></span>
                 </label>
             )
         })

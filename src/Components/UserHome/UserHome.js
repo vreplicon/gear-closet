@@ -11,9 +11,9 @@ export default class UserHome extends React.Component {
             <div className="user-home">
             <header role="banner" className="banner">
             <Link to='/'>
-                    <button>Go Back to Landing Page</button>
-                </Link>
-        <h1>Your Gear Closet</h1>
+                <button>Go Back to Landing Page</button>
+            </Link>
+            <h1>Your Gear Closet</h1>
       </header>
       
             <UserLists />

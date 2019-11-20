@@ -16,9 +16,3 @@
     outline: none;
     box-shadow: 0.2rem 0.8rem 1.6rem #006E73;
 }
-
-
-.check-container input {
-    border: none;
-    cursor: pointer;
-}

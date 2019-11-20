@@ -1,11 +1,13 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto|Source+Code+Pro&display=swap");
+
 * {
     box-sizing: border-box;
     font-size: 20px;
     margin: 0;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Roboto', sans-serif;
   }
 
-nav, footer {
+/* nav, footer {
     position: fixed;
     width: 100%;
     background-color: #D3EDD5;
@@ -24,7 +26,7 @@ footer {
     padding: 0 10%;
     display: flex;
     justify-content: space-around;
-}
+} */
 
 section, .banner {    
     width: 100%;
@@ -32,8 +34,8 @@ section, .banner {
 }
 
 main {
-    margin-top: 50px;
-    margin-bottom: 80px;
+    /* margin-top: 50px; */
+    /* margin-bottom: 80px; */
     background-color: #EDECDA;
 }
 
@@ -42,6 +44,7 @@ h1 {
     font-weight: normal;
     text-align: center;
     color: #006E73;
+    font-family: 'Source Code Pro', monospace;
 }
 
 h2 {
@@ -60,7 +63,6 @@ border:0.16em solid rgba(255,255,255,0);
 border-radius:2em;
 box-sizing: border-box;
 text-decoration:none;
-font-family:'Roboto',sans-serif;
 font-weight:300;
 color:#FFFFFF;
 background-color: #AFACA0;
@@ -97,8 +99,8 @@ li {
         height: 200px; */
         /* display: flex; */
         /* justify-content: flex-end; */
-        border: 5px solid #AFACA0;
-        border-radius: 10px;
+        /* border: 5px solid #AFACA0; */
+        /* border-radius: 10px; */
         /* background-color: #FFF; */
 }
 
@@ -126,16 +128,7 @@ textarea {
     background-color: darkgray;
 }
 
-.signup-form {
-    text-align: center;
-    background-color: white;
-}
-
 header, .one, .two, .three {
-    text-align: center;
-}
-
-#sign-in-form {
     text-align: center;
 }
 
@@ -143,38 +136,6 @@ header, .one, .two, .three {
     text-align: center;
 }
 
-<<<<<<< HEAD
-=======
-.gear-title {
-    color: black;
-}
-
->>>>>>> master
-
 a {
     text-decoration: none;
 }
-
-<<<<<<< HEAD
-=======
-dt {
-    font-weight: bold;
-}
-
-.details-list {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-}
-
-.detail-item {
-    display: block;
-    margin: 2%;
-}
-
-.gear-header, .list-header {
-    border: 5px solid lightgray;
-    margin: 5px;
-    padding: 5px;
-}
->>>>>>> master

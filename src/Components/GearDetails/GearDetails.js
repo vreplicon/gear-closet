@@ -1,5 +1,6 @@
 import React from 'react'
 import AppContext from '../AppContext/AppContext'
+import './GearDetails.css'
 
 export default class GearDetails extends React.Component {
 

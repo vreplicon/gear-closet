@@ -1,5 +1,6 @@
 import React from 'react';
 import AppContext from '../AppContext/AppContext'
+import './UpdateList.css'
 
 export default class UpdateList extends React.Component {
 
@@ -88,13 +89,15 @@ export default class UpdateList extends React.Component {
                                 name="list-title"
                                 value={this.state.title} 
                                 placeholder="Freerider Climb" 
+                                className="list-title"
                                 onChange={(e) => this.setState({title: e.target.value})}
                                 required />
                         </div>
                         
                         <div className="form-section">
                             <label htmlFor="trip-description">Trip summary</label>
-                            <textarea name="trip-description" 
+                            <textarea name="trip-description"
+                                        className="trip-description" 
                                         rows="10"
                                         value={this.state.description}  
                                         onChange={(e) => this.setState({description: e.target.value})}></textarea>

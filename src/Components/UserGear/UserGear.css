@@ -1,0 +1,11 @@
+.main-header {
+    background-color: #D3EDD5;
+    border: 5px solid #AFACA0;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.text-header {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 30px;
+}
