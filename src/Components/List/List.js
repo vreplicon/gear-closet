@@ -1,6 +1,7 @@
 import React from "react";
 import AppContext from "../AppContext/AppContext";
 import GearList from "../GearList/GearList";
+import './List.css'
 
 export default class List extends React.Component {
   static contextType = AppContext;
@@ -15,14 +16,19 @@ export default class List extends React.Component {
         <header role="banner" className="banner">
           <h1>{list.list_name}</h1>
         </header>
-
+        <section className="main-header">
+          <h2 className="text-header">Description</h2>
+        </section>
         <section className="description">
           <p>{list.list_description}</p>
         </section>
-        <section className="gear">
-          <h2>Gear</h2>
-          <GearList filterIds={list.gear} />
+        <section className="main-header">
+          <h2 className="text-header">Gear</h2>
         </section>
+        <GearList filterIds={list.gear} />
+
+
+
       </div>
     );
   }
