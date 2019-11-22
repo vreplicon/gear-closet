@@ -1,12 +1,8 @@
+
+
 .list-title, .trip-description {
     margin: 0;
     padding: 0.8rem 1.6rem;
-    /* color: inherit; */
-    /* width: 100%; */
-    /* font-family: inherit;
-    font-size: 2.1rem;
-    font-weight: inherit;
-    line-height: 1.8; */
     border: none;
     border-radius: 10px;
     transition: box-shadow 300ms;
@@ -17,8 +13,18 @@
     box-shadow: 0.2rem 0.8rem 1.6rem #006E73;
 }
 
+.gear-list {
+    border-radius: 10px;
+    background-color: #FFF;
+    font-family: 'Source Code Pro', monospace;
+    padding: 2%;
+}
 
-.check-container input {
-    border: none;
-    cursor: pointer;
+.title {
+    color: #006E73;
+    padding: 1%;
+}
+
+.gear-checkbox {
+    margin: 2%;
 }

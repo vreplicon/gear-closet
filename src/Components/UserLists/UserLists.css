@@ -8,5 +8,6 @@
 
 .text-header {
     font-family: 'Source Code Pro', monospace;
-    font-size: 40px;
+    font-size: 35px;
+    font-weight: normal;
 }

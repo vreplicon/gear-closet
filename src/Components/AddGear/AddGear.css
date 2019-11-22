@@ -1,12 +1,8 @@
-.gear-name, .gear-notes, .gear-weight {
+.gear-name,
+.gear-notes,
+.gear-weight {
     margin: 0;
     padding: 0.8rem 1.6rem;
-    /* color: inherit; */
-    /* width: 100%; */
-    /* font-family: inherit;
-    font-size: 2.1rem;
-    font-weight: inherit;
-    line-height: 1.8; */
     border: none;
     border-radius: 10px;
     transition: box-shadow 300ms;
@@ -15,7 +11,7 @@
 .dropdown {
     border-radius: 10px;
     padding: 0.8rem 1.6rem;
-    border:0.16em solid rgba(255,255,255,0);
+    border: 0.16em solid rgba(255, 255, 255, 0);
 }
 
 .dropdown:focus {
@@ -23,7 +19,13 @@
     border-color: #006E73;
 }
 
-.gear-name:focus, .gear-notes:focus, .gear-weight:focus {
+.gear-name:focus,
+.gear-notes:focus,
+.gear-weight:focus {
     outline: none;
     box-shadow: 0.2rem 0.8rem 1.6rem #006E73;
+}
+
+.bottom-buttons {
+    margin-top: 20px;
 }

@@ -5,7 +5,7 @@
     font-size: 20px;
     margin: 0;
     font-family: 'Roboto', sans-serif;
-  }
+}
 
 /* nav, footer {
     position: fixed;
@@ -28,7 +28,8 @@ footer {
     justify-content: space-around;
 } */
 
-section, .banner {    
+section,
+.banner {
     width: 100%;
     padding: 2%;
 }
@@ -55,25 +56,27 @@ p {
     font-size: 20px;
 }
 
-button{
-    display:inline-block;
-    padding:0.3em 1.2em;
-margin:0 0.1em 0.1em 0;
-border:0.16em solid rgba(255,255,255,0);
-border-radius:2em;
-box-sizing: border-box;
-text-decoration:none;
-font-weight:300;
-color:#FFFFFF;
-background-color: #AFACA0;
-text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
-text-align:center;
-transition: all 0.2s;
-    }
-    button:hover{
-    border-color: rgba(255,255,255,1);
-    }
-button:focus{
+button {
+    display: inline-block;
+    padding: 0.3em 1.2em;
+    margin: 0 0.1em 0.1em 0;
+    border: 0.16em solid rgba(255, 255, 255, 0);
+    border-radius: 2em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-weight: 300;
+    color: #FFFFFF;
+    background-color: #AFACA0;
+    text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.35);
+    text-align: center;
+    transition: all 0.2s;
+}
+
+button:hover {
+    border-color: rgba(255, 255, 255, 1);
+}
+
+button:focus {
     outline: none;
     border-color: #FFFFFF;
 }
@@ -89,19 +92,20 @@ li {
     font-size: 30px;
 }
 
-.one, .three {
+.one,
+.three {
     background-color: #AFACA0;
 }
 
 .two {
     background-color: #D3EDD5;
-        /* width: 288px;
+    /* width: 288px;
         height: 200px; */
-        /* display: flex; */
-        /* justify-content: flex-end; */
-        /* border: 5px solid #AFACA0; */
-        /* border-radius: 10px; */
-        /* background-color: #FFF; */
+    /* display: flex; */
+    /* justify-content: flex-end; */
+    /* border: 5px solid #AFACA0; */
+    /* border-radius: 10px; */
+    /* background-color: #FFF; */
 }
 
 form {
@@ -128,7 +132,10 @@ textarea {
     background-color: darkgray;
 }
 
-header, .one, .two, .three {
+header,
+.one,
+.two,
+.three {
     text-align: center;
 }
 
