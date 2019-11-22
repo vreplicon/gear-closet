@@ -3,6 +3,9 @@ import SignUpForm from "../SignUpForm/SignUpForm";
 import SignInForm from "../SignInForm/SignInForm";
 import { Link } from "react-router-dom";
 import AppContext from "../AppContext/AppContext";
+import gearImage from "../../gearImage.PNG"
+import listImage from "../../listPage.PNG"
+import './LandingPage.css'
 
 export default class LandingPage extends React.Component {
   static contextType = AppContext;
@@ -17,28 +20,25 @@ export default class LandingPage extends React.Component {
           </h2>
         </header>
 
-        <section className="one">
-          <header>
+        <section className="text-block">
+          <header className="block-header">
             <h3>Create a Database with all of Your Gear</h3>
-          </header>
-
-          <p>
-            [<em>placeholder for screenshot of user gear entry interface</em>]
-          </p>
-          <p>
+            <p>
             Gear Closet lets you keep all of your equipment info for various
             sports in one place!
           </p>
+          </header>
+
+            <img src={gearImage} alt="List of gear on user's homepage" width="450" height="275"/>
+
         </section>
 
-        <section className="two">
-          <header>
+        <section className="text-block">
+          <header className="block-header">
             <h3>Compile Lists for Your Upcoming Trips</h3>
+            <p>Put together the list of gear to prepare for your next trip</p>
           </header>
-          <p>
-            [<em>placeholder for screenshot of list editing interface</em>]
-          </p>
-          <p>Put together the list of gear to prepare for your next trip</p>
+            <img src={listImage} alt="List's page" width="450" height="275"/>
         </section>
 
         <Link to="/home">
@@ -46,8 +46,10 @@ export default class LandingPage extends React.Component {
             Head to example homepage
           </button>
         </Link>
-        <SignUpForm />
-        <SignInForm />
+        <div className="google-buttons">
+            <SignUpForm />
+            <SignInForm />
+        </div>
       </div>
     );
   }
