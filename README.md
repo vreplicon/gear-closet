@@ -8,10 +8,10 @@ on your next big trip.
 ## Screenshots
 
 User's entered gear listed on the homepage
-![User's gear listed on the homepage](gearImage.png)
+![User's gear listed on the homepage](gearImage.PNG)
 
 Example of list made by user which includes a selection of their gear
-![Example of list made by user which includes a selection of their gear](listImage.png)
+![Example of list made by user which includes a selection of their gear](listPage.PNG)
 
 ## Live Demo
 
