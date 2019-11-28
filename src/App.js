@@ -247,19 +247,19 @@ class App extends React.Component {
       <AppContext.Provider value={contextValue}>
         <main className="App">
           <Switch>
-            <Route path="#/sign-in" component={SignInForm} />
+            <Route path="/#/sign-in" component={SignInForm} />
 
-            <Route path="#/add-gear" component={AddGear} />
+            <Route path="/#/add-gear" component={AddGear} />
 
-            <Route path="#/add-list" component={AddList} />
+            <Route path="/#/add-list" component={AddList} />
 
-            <Route path="#/update-list/:listId" component={UpdateList} />
+            <Route path="/#/update-list/:listId" component={UpdateList} />
 
-            <Route path="#/update-gear/:gearId" component={UpdateGear} />
+            <Route path="/#/update-gear/:gearId" component={UpdateGear} />
 
-            <Route path="#/home" component={UserHome} />
+            <Route path="/#/home" component={UserHome} />
 
-            <Route path="#/list/:listId" component={List} />
+            <Route path="/#/list/:listId" component={List} />
 
             <Route path="/" component={LandingPage} />
           </Switch>
