@@ -42,7 +42,7 @@ export default class GearHeader extends React.Component {
             Delete
           </button>
         )}
-        <Link to={`/update-gear/${this.props.gear.id}`}>
+        <Link to={`#/update-gear/${this.props.gear.id}`}>
           <button>Edit</button>
         </Link>
         <button onClick={() => this.toggleDetails()}>
