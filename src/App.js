@@ -89,6 +89,7 @@ class App extends React.Component {
       this.setGear
     );
     this.props.history.push("/home");
+    localStorage.setItem("userId", user.id);
     this.setState({ userId: user.id });
   };
 
