@@ -16,7 +16,7 @@ export default class UserLists extends React.Component {
       <section className="list">
         <section className="main-header">
           <h2 className="text-header">Lists</h2>
-          <Link to="#/add-list">
+          <Link to="/#/add-list">
             <button>Add new list</button>
           </Link>
         </section>

@@ -15,7 +15,7 @@ export default class GearList extends React.Component {
       <section className="gear">
         <section className="main-header">
           <h2 className="text-header">Gear</h2>
-          <Link to="#/add-gear">
+          <Link to="/#/add-gear">
             <button>Add new gear</button>
           </Link>
         </section>

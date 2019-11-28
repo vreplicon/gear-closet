@@ -41,7 +41,7 @@ export default class LandingPage extends React.Component {
             <img src={listImage} alt="List's page" width="450" height="275"/>
         </section>
 
-        <Link to="#/home">
+        <Link to="/#/home">
           <button onClick={() => this.context.showExamplePage()}>
             Head to example homepage
           </button>
