@@ -29,7 +29,7 @@ export default class LandingPage extends React.Component {
           </p>
           </header>
 
-            <img src={gearImage} alt="List of gear on user's homepage" width="450" height="275"/>
+            <img src={gearImage} alt="List of gear on user's homepage"/>
 
         </section>
 
@@ -38,10 +38,10 @@ export default class LandingPage extends React.Component {
             <h3>Compile Lists for Your Upcoming Trips</h3>
             <p>Put together the list of gear to prepare for your next trip</p>
           </header>
-            <img src={listImage} alt="List's page" width="450" height="275"/>
+            <img src={listImage} alt="List's page"/>
         </section>
 
-        <Link to="/#/home">
+        <Link to="/home">
           <button onClick={() => this.context.showExamplePage()}>
             Head to example homepage
           </button>

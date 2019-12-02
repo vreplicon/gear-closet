@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import LandingPage from "./LandingPage";
+import UpdateList from "./UpdateList";
 
-it("renders LandingPage component without crashing", () => {
+it("renders UpdateList component without crashing", () => {
   const div = document.createElement("div");
-  ReactDOM.render(<LandingPage />, div);
+  ReactDOM.render(<UpdateList />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

@@ -1,0 +1,31 @@
+.gear-name,
+.gear-notes,
+.gear-weight {
+    margin: 0;
+    padding: 0.8rem 1.6rem;
+    border: none;
+    border-radius: 10px;
+    transition: box-shadow 300ms;
+}
+
+.dropdown {
+    border-radius: 10px;
+    padding: 0.8rem 1.6rem;
+    border: 0.16em solid rgba(255, 255, 255, 0);
+}
+
+.dropdown:focus {
+    outline: none;
+    border-color: #006E73;
+}
+
+.gear-name:focus,
+.gear-notes:focus,
+.gear-weight:focus {
+    outline: none;
+    box-shadow: 0.2rem 0.8rem 1.6rem #006E73;
+}
+
+.bottom-buttons {
+    margin-top: 20px;
+}

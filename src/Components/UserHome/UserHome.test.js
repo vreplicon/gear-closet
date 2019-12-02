@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import LandingPage from "./LandingPage";
+import UserHome from "./UserHome";
 
-it("renders LandingPage component without crashing", () => {
+it("renders UserHome component without crashing", () => {
   const div = document.createElement("div");
-  ReactDOM.render(<LandingPage />, div);
+  ReactDOM.render(<UserHome />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

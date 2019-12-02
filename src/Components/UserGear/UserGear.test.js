@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import LandingPage from "./LandingPage";
+import UserGear from "./UserGear";
 
-it("renders LandingPage component without crashing", () => {
+it("renders UserGear component without crashing", () => {
   const div = document.createElement("div");
-  ReactDOM.render(<LandingPage />, div);
+  ReactDOM.render(<UserGear />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

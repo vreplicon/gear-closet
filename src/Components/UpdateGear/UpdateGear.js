@@ -56,6 +56,7 @@ export default class UpdateGear extends React.Component {
               <label htmlFor="gear-name">Name</label>
               <input
                 type="text"
+                class="gear-name"
                 name="gear-name"
                 placeholder="Crash Pad"
                 required
@@ -67,6 +68,7 @@ export default class UpdateGear extends React.Component {
             <div className="gear-type form-section">
               <label htmlFor="gear-type">Gear Type</label>
               <select
+                class="dropdown"
                 onChange={e => this.setState({ type: e.target.value })}
                 value={this.state.type}
               >
@@ -80,11 +82,13 @@ export default class UpdateGear extends React.Component {
               <label htmlFor="gear-weight">Weight</label>
               <input
                 type="number"
+                class="gear-weight"
                 name="gear-weight"
                 value={this.state.weight}
                 onChange={e => this.setState({ weight: e.target.value })}
               />
               <select
+                class="dropdown"
                 value={this.state.unit}
                 onChange={e => this.setState({ unit: e.target.value })}
               >
@@ -98,12 +102,15 @@ export default class UpdateGear extends React.Component {
               <label htmlFor="notes">Notes</label>
               <textarea
                 name="notes"
+                class="gear-notes"
                 onChange={e => this.setState({ notes: e.target.value })}
                 value={this.state.notes || ""}
               ></textarea>
             </div>
 
-            <button type="submit">Submit</button>
+            <button class="buttom-buttons" type="submit">
+              Submit
+            </button>
           </form>
         </section>
       </div>

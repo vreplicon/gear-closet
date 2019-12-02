@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import LandingPage from "./LandingPage";
+import GearList from "./GearList";
 
-it("renders LandingPage component without crashing", () => {
+it("renders GearList component without crashing", () => {
   const div = document.createElement("div");
-  ReactDOM.render(<LandingPage />, div);
+  ReactDOM.render(<GearList />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
